@@ -76,6 +76,17 @@ class TestAttribute(unittest.TestCase):
         self.assertEqual(1, len(lbl_attr))
         self.assertEqual(lbl_attr[0].value, attr1.values[0]["id"])
 
+    def test_create_attribute_default_subject_type(self):
+        attributes = self.project.get_attributes()
+        self.assertEqual(0, len(attributes), 'Should be no attributes for a new project')
+        # Create attribute without subject type
+        attr1 = self.project.create_attribute("attr1", "SELECTION", norder=4, values=["v1", "v2", "v3"])
+        self.assertEqual(attr1.subject_type, "LABEL")
+        attributes = self.project.get_attributes()
+        self.assertEqual(1, len(attributes))
+        self.assertEqual('LABEL', attributes[0].subject_type)
+
+
     def tearDown(self) -> None:
         projects = self.h.get_projects()
         for p in projects:
