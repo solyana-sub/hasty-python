@@ -302,7 +302,7 @@ class Project(HastyObject):
                              Attribute.endpoint.format(project_id=self._id),
                              obj_params={"project_id": self.id})
 
-    def create_attribute(self, name: str, attribute_type: str, subject_type: str, description: Optional[str] = None,
+    def create_attribute(self, name: str, attribute_type: str, subject_type: Optional[str] = 'LABEL', description: Optional[str] = None,
                norder: Optional[float] = None, values: List[str] = None):
         """
         Create attribute, returns :py:class:`~hasty.Attribute` object.

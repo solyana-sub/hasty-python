@@ -12,8 +12,8 @@ class Attribute(HastyObject):
 
     def __repr__(self):
         return self.get__repr__(OrderedDict({"id": self._id, "name": self._name, "attribute_type": self._attribute_type,
-                                             "description": self._description, "norder": self._norder,
-                                             "values": self._values}))
+                                             "subject_type": self.subject_type, "description": self._description,
+                                             "norder": self._norder, "values": self._values}))
 
     @property
     def id(self):
@@ -44,6 +44,13 @@ class Attribute(HastyObject):
         return self._attribute_type
 
     @property
+    def subject_type(self):
+        """
+        :type: string
+        """
+        return self._subject_type
+
+    @property
     def description(self):
         """
         :type: string
@@ -69,6 +76,7 @@ class Attribute(HastyObject):
         self._name = None
         self._project_id = None
         self._attribute_type = None
+        self._subject_type = None
         self._description = None
         self._norder = None
         self._values = None
@@ -86,6 +94,8 @@ class Attribute(HastyObject):
             self._description = data["description"]
         if "norder" in data:
             self._norder = data["norder"]
+        if "subject_type" in data:
+            self._subject_type = data["subject_type"]
         if "values" in data:
             self._values = data["values"]
 
