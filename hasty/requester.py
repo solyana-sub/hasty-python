@@ -21,7 +21,7 @@ class Requester:
         }
         self.cookies = dict(ui_last_state=self.session_id)
 
-    @retry(stop_max_attempt_number=7, wait_fixed=2000, retry_on_exception=if_http_exception)
+    @retry(stop_max_attempt_number=15, wait_fixed=5000, retry_on_exception=if_http_exception)
     def request(self, method, endpoint, headers, params=None, json_data=None, data=None, files=None, cookies=None):
         url = self.base_url + endpoint
         if endpoint.startswith("http"):
